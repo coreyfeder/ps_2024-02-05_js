@@ -64,4 +64,3 @@ function validateInputs(numbers) {
     return result;
 };
 
-
