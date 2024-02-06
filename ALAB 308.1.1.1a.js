@@ -4,9 +4,9 @@
 /*
  * Given:
  * - we have four inputs
+ * - the inputs are numbers
  * 
  * Implied:
- * - the inputs are numbers
  * - the numbers are rational
  * - the numbers are integers
  * 
@@ -16,6 +16,11 @@
  * - numbers are ≤ 25
  * - numbers are unique
  */
+
+// https://codesandbox.io/embed/alab-301-1-1-activity-one-example-yhd2x8?fontsize=14&hidenavigation=1&module=%2Fsrc%2Findex.mjs&theme=dark&view=editor
+// Copy the code from the editor into your own file to use as a starting point. Make sure to commit!
+// ...No. Those things are hideous
+// I want to make my own, EQUALLY hideous constructs.
 
 
 const COUNT_OF_INPUTS = 4;
@@ -47,14 +52,16 @@ function valuesAreUnique(numbers) {
     return numbers.length == new Set(numbers).size;
 };    
 
-
 function validateInputs(numbers) {
+    // takes an array of numbers
     let result = true;
     result = result && validNumberOfInputs(numbers);
     result = result && valuesSumEqualsTarget(numbers);
     result = result && valuesContainEnoughOdds(numbers);
     result = result && valuesWithinMaxLimit(numbers);
     result = result && valuesAreUnique(numbers);
-    console.log(`Inputs are ${(!result && "NOT " || "")}valid!`);
+    // console.log(`Inputs are ${(!result && "NOT " || "")}valid!`);
     return result;
 };
+
+
