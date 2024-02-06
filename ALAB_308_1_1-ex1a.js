@@ -31,7 +31,11 @@ const DEBUG = 4;
 
 
 function validInputFormat(numbers) {
-    DEBUG > 3 && console.log(`validInputFormat: numbers=${numbers}`);
+    if (DEBUG > 3) {
+        console.log(`validInputFormat: numbers=${numbers}`);
+        console.log(`numbers instanceof Array? ${numbers instanceof Array}`);
+        console.log(`numbers length? ${numbers instanceof Array && numbers.length}`);
+    }
     return numbers instanceof Array && numbers.length > 0;
 };
 
@@ -47,8 +51,17 @@ function valuesSumEqualsTarget(numbers, target = SUM_OF_NUMBERS_EQUALS) {
 };    
 
 function valuesContainEnoughOdds(numbers, target = COUNT_OF_ODDS_MINIMUM) {
-    function isOdd(n) { return n & 2 == 1; };
-    DEBUG > 3 && console.log(`valuesContainEnoughOdds: target=${target}, numbers=${numbers}`);
+    function isOdd(n) {
+        if (DEBUG > 3) {
+            console.log(`isOdd: n=${n}`);
+            console.log(`n & 1? ${n & 1}`);
+        }
+        return n & 1 == 1;
+    };
+    if (DEBUG > 3) {
+        console.log(`valuesContainEnoughOdds: numbers=${numbers}, target=${target}`);
+        console.log(`numbers.filter(isOdd) = ${numbers.filter(isOdd)}`);
+    }
     return numbers.filter(isOdd).length >= target;
 };    
 
