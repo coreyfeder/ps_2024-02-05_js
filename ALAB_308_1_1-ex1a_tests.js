@@ -1,4 +1,4 @@
-function test() {
+export function test() {
     function runTest(
         testName,
         testData,
@@ -24,6 +24,7 @@ function test() {
     // function testValidateInputs() {...};
 
     // test number of inputs
+    runTest(testFunction, testData)
     // test sum equals target
     // test contains enough odds
     // test within max limit
@@ -32,8 +33,6 @@ function test() {
     // test values can be integers
     // test values can be floats
     //      (no rounding threshold means there WILL be a margin of error!)
-    // test behavior when given an array of strings that cast to numbers        
+    // test behavior when given an array of strings that cast to numbers
     
-        testData = [11, 12, 13, 14];
-        runTest(testData);
 };
