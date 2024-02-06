@@ -27,52 +27,33 @@ const COUNT_OF_INPUTS = 4;
 const SUM_OF_NUMBERS_EQUALS = 50;
 const COUNT_OF_ODDS_MINIMUM = 2;
 const SINGLE_NUMBER_MAX = 25;
-const DEBUG = 4;
+const DEBUG = 0;
 
 
 function validInputFormat(numbers) {
-    if (DEBUG > 3) {
-        console.log(`validInputFormat: numbers=${numbers}`);
-        console.log(`numbers instanceof Array? ${numbers instanceof Array}`);
-        console.log(`numbers length? ${numbers instanceof Array && numbers.length}`);
-    }
     return numbers instanceof Array && numbers.length > 0;
 };
 
 function validNumberOfInputs(numbers, target = COUNT_OF_INPUTS) {
-    DEBUG > 3 && console.log(`validNumberOfInputs: target=${target}, numbers=${numbers}`);
     return numbers.length == target;
 };
 
 function valuesSumEqualsTarget(numbers, target = SUM_OF_NUMBERS_EQUALS) {
     function addItUp(a, b) { return a + b; };    
-    DEBUG > 3 && console.log(`valuesSumEqualsTarget: target=${target}, numbers=${numbers}`);
     return numbers.reduce(addItUp) == target;
 };    
 
 function valuesContainEnoughOdds(numbers, target = COUNT_OF_ODDS_MINIMUM) {
-    function isOdd(n) {
-        if (DEBUG > 3) {
-            console.log(`isOdd: n=${n}`);
-            console.log(`n & 1? ${n & 1}`);
-        }
-        return n & 1 == 1;
-    };
-    if (DEBUG > 3) {
-        console.log(`valuesContainEnoughOdds: numbers=${numbers}, target=${target}`);
-        console.log(`numbers.filter(isOdd) = ${numbers.filter(isOdd)}`);
-    }
+    function isOdd(n) { return n & 1 == 1; };
     return numbers.filter(isOdd).length >= target;
 };    
 
 function valuesWithinMaxLimit(numbers, target = SINGLE_NUMBER_MAX) {
     function exceedsMaxLimit(n) { return n > target; };
-    DEBUG > 3 && console.log(`valuesWithinMaxLimit: target=${target}, numbers=${numbers}`);
     return numbers.filter(exceedsMaxLimit).length == 0;
 };    
 
 function valuesAreUnique(numbers) {
-    DEBUG > 3 && console.log(`valuesAreUnique: numbers=${numbers}`);
     return numbers.length == new Set(numbers).size;
 };    
 
@@ -151,7 +132,7 @@ function unitTests() {
     runTest(validateInputs, [-1, 24, 12, 15], true, "Negative inputs acceptable (?)");
     // number of inputs
     runTest(validateInputs, [17, 20, 13], false, "Too few inputs");
-    runTest(validateInputs, [17, 9, 11, 13], false, "Too many inputs");
+    runTest(validateInputs, [17, 9, 11, 13, 0], false, "Too many inputs");
     runTest(validateInputs, [], false, "No inputs");
     // sum of inputs
     runTest(validateInputs, [11, 12, 13, 15], false, "Sum does not match expected value");
